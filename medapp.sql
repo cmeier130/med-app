@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- ホスト: localhost:8889
--- 生成日時: 2022 年 12 月 04 日 08:29
+-- 生成日時: 2022 年 12 月 06 日 10:14
 -- サーバのバージョン： 5.7.34
 -- PHP のバージョン: 7.4.21
 
@@ -86,16 +86,17 @@ CREATE TABLE `meds` (
 
 INSERT INTO `meds` (`id`, `user_id`, `name`, `days`, `amount`, `type`, `comments`, `time`, `date_of_creation`, `date_of_update`, `del_flag`) VALUES
 (1, 1, 'バファリン', '月、火、水、木、金、土、日', 1, '錠', '慢性の頭痛のため', '朝', '2022-12-01 09:56:57', '2022-12-01 09:34:15', 1),
-(2, 1, 'ステロイド', '月、火、水、木、金、土、日', 2, '錠', 'ムキムキなるぜぇ', '朝、昼、夕、就寝前', '2022-11-30 14:36:15', '2022-11-30 14:36:15', 0),
+(2, 1, 'ステロイド', '月、火、水、木、金、土、日', 2, '錠', NULL, '朝、昼、夕、就寝前', '2022-12-05 17:16:04', '2022-12-05 17:16:04', 0),
 (3, 1, 'aaaa', '水、木', 1, '個', 'aaa', '昼、夕', '2022-11-30 15:00:39', NULL, 1),
 (4, 1, 'バファリン', '月、火、水、木、金、土、日', 1, '錠', '慢性の頭痛のため', '朝、昼、夕、就寝前', '2022-12-01 09:58:12', NULL, 0),
 (5, 4, '薬3', '月、木、金、土', 3, '個', NULL, '夕、就寝前', '2022-12-01 10:40:31', NULL, 0),
-(6, 1, '薬3', '月、火、水、木、金', 2, '個', 'ああああ', '昼、夕', '2022-12-02 17:55:41', NULL, 0),
+(6, 1, '薬3', '月、火、水、木、金', 22, '個', 'ああああ', '昼、夕', '2022-12-05 17:30:05', '2022-12-05 17:30:05', 0),
 (7, 1, '薬5', '月、水、木、金、土、日', 1, '個', 'ああああ', '朝、昼', '2022-12-02 18:02:29', NULL, 1),
 (8, 1, '薬5', '月、火', 2, '包', 'ああああああ', '朝、昼', '2022-12-02 18:05:23', NULL, 1),
 (9, 1, '薬5', '月、火', 2, '包', 'ああああ', '朝、夕', '2022-12-02 18:12:34', NULL, 1),
 (10, 1, '薬5', '水、木、金', 33, '個', 'あああああ', '朝、昼', '2022-12-02 18:19:29', '2022-12-02 18:19:19', 1),
-(11, 1, '薬5', '月、火、木', 33, '錠', 'ああああああ', '夕、就寝前', '2022-12-02 18:21:41', '2022-12-02 18:21:33', 1);
+(11, 1, '薬5', '月、火、木', 33, '錠', 'ああああああ', '夕、就寝前', '2022-12-02 18:21:41', '2022-12-02 18:21:33', 1),
+(12, 1, '薬5', '火、木、金、土、日', 33, '個', 'aaa', '朝、昼、夕', '2022-12-05 17:29:56', NULL, 1);
 
 -- --------------------------------------------------------
 
@@ -160,8 +161,7 @@ CREATE TABLE `patients` (
 INSERT INTO `patients` (`id`, `patientid`, `doctorid`) VALUES
 (1, 1, 3),
 (3, 4, 3),
-(5, 1, 5),
-(9, 6, 3);
+(5, 1, 5);
 
 -- --------------------------------------------------------
 
@@ -202,7 +202,7 @@ CREATE TABLE `sessions` (
 --
 
 INSERT INTO `sessions` (`id`, `user_id`, `ip_address`, `user_agent`, `payload`, `last_activity`) VALUES
-('CIt5P4YhR3fbcg9ZzbdEl8XLQIlLB5FMKvlWeVKI', 2, '127.0.0.1', 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/107.0.0.0 Safari/537.36', 'YTo2OntzOjY6Il90b2tlbiI7czo0MDoiUmdFS1BxZUNBOVM5UGxjckFIWUlkV2lwNE5Ea25ETmxZSnNqVnN5aCI7czo2OiJfZmxhc2giO2E6Mjp7czozOiJvbGQiO2E6MDp7fXM6MzoibmV3IjthOjA6e319czozOiJ1cmwiO2E6MDp7fXM6OToiX3ByZXZpb3VzIjthOjE6e3M6MzoidXJsIjtzOjIxOiJodHRwOi8vbG9jYWxob3N0OjgwMDAiO31zOjUwOiJsb2dpbl93ZWJfNTliYTM2YWRkYzJiMmY5NDAxNTgwZjAxNGM3ZjU4ZWE0ZTMwOTg5ZCI7aToyO3M6NDoiYXV0aCI7YToxOntzOjIxOiJwYXNzd29yZF9jb25maXJtZWRfYXQiO2k6MTY2OTk3NDE5Nzt9fQ==', 1669974678);
+('VXAYOg58DOPUuJX8QXSSvc9c2BAicO7X8tZLbzN1', NULL, '127.0.0.1', 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/108.0.0.0 Safari/537.36', 'YTo0OntzOjY6Il90b2tlbiI7czo0MDoiNmdVNnVnVE80VGVuT2JpNTZLUUFEU1hua3dGQ3pRWDNEMkJhT1FXbiI7czo2OiJfZmxhc2giO2E6Mjp7czozOiJvbGQiO2E6MDp7fXM6MzoibmV3IjthOjA6e319czozOiJ1cmwiO2E6MTp7czo4OiJpbnRlbmRlZCI7czoyMToiaHR0cDovL2xvY2FsaG9zdDo4MDAwIjt9czo5OiJfcHJldmlvdXMiO2E6MTp7czozOiJ1cmwiO3M6Mjc6Imh0dHA6Ly9sb2NhbGhvc3Q6ODAwMC9sb2dpbiI7fX0=', 1670289021);
 
 -- --------------------------------------------------------
 
@@ -232,12 +232,12 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `name`, `email`, `email_verified_at`, `password`, `two_factor_secret`, `two_factor_recovery_codes`, `two_factor_confirmed_at`, `remember_token`, `current_team_id`, `profile_photo_path`, `created_at`, `updated_at`, `role`) VALUES
-(1, '山田太郎', 'test@test.co.jp', NULL, '$2y$10$Hn9XrwIYyqYyJWCARUoZu.9c1M4zArqv9qsMkIAw32eBAxKstROxm', NULL, NULL, NULL, NULL, NULL, 'public/profiles/E7KV6tcf0RqVnMuF5jcALyXFiwqY637olHnkS3Ma.png', '2022-11-27 16:42:16', '2022-12-02 09:22:18', 0),
+(1, '山田太郎', 'test@test.co.jp', NULL, '$2y$10$Hn9XrwIYyqYyJWCARUoZu.9c1M4zArqv9qsMkIAw32eBAxKstROxm', NULL, NULL, NULL, NULL, NULL, 'public/profiles/jVqePpoDvxDRUvk1y0EMYtAM9XOgglNd3sXDCoAw.png', '2022-11-27 16:42:16', '2022-12-05 08:31:58', 0),
 (2, '管理ユーザ', 'admin@admin.co.jp', NULL, '$2y$10$rRwZpXU5Yw5Br7D68ZnbfOkhNh5WW6Jr4pIGW.zgu8vqIiGK05FNK', NULL, NULL, NULL, NULL, NULL, NULL, '2022-11-28 15:02:18', '2022-11-28 15:02:18', 2),
 (3, '髙橋', 'doctor@doctor.co.jp', NULL, '$2y$10$H.0maBx9IGiGNp0uzDAome..aMpnNE1CgnmrDegkr2RZbODqBE.HW', NULL, NULL, NULL, NULL, NULL, 'public/profiles/6RNRIVAHM40jxiV3hRxyALwrnTn1KNbdZkYnjMjn.png', '2022-11-28 16:45:22', '2022-12-01 06:49:00', 1),
 (4, '田中花子', 'test2@test.co.jp', NULL, '$2y$10$48PLuPHFhBJYUO5YlPp39uhF4XaOqzdu/2X2Ie7OI4C0D/dLtna9y', NULL, NULL, NULL, NULL, NULL, 'public/profiles/zoO8uRioBb7jYcLg9XqTFPrEnxqX63OohPJuRxrj.jpg', '2022-11-30 03:01:09', '2022-12-01 07:13:41', 0),
 (5, '橋本', 'doctor2@doctor.co.jp', NULL, '$2y$10$reqYlUmNpTbyK2Z4mrwQ7eBp1VCSkIXB09ZAKM/MxRCKp./GZwLv2', NULL, NULL, NULL, NULL, NULL, 'public/profiles/Lza7ArtrNNJ5O7mAQuSStJaauS445usg63s2mizO.png', '2022-12-01 01:41:49', '2022-12-01 07:16:32', 1),
-(6, 'パスワードリセット用', 'cmeier130@gmail.com', NULL, '$2y$10$4cvaEg2j8cTKO7OYSZReSuYnkJ96S/9kmleDxx7Ff6BFaRG7L.KSy', NULL, NULL, NULL, NULL, NULL, NULL, '2022-12-02 08:10:03', '2022-12-02 08:10:03', 0);
+(7, '山下達郎', 'test3@test.co.jp', NULL, '$2y$10$heyilQTM.wegQpRjF6Zu6esQHkeyU9J6fR7EaABET1tUqUPttEXDC', NULL, NULL, NULL, NULL, NULL, NULL, '2022-12-06 01:09:20', '2022-12-06 01:09:20', 0);
 
 --
 -- ダンプしたテーブルのインデックス
@@ -323,7 +323,7 @@ ALTER TABLE `failed_jobs`
 -- テーブルの AUTO_INCREMENT `meds`
 --
 ALTER TABLE `meds`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT COMMENT 'システムID', AUTO_INCREMENT=12;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT COMMENT 'システムID', AUTO_INCREMENT=13;
 
 --
 -- テーブルの AUTO_INCREMENT `migrations`
@@ -335,7 +335,7 @@ ALTER TABLE `migrations`
 -- テーブルの AUTO_INCREMENT `patients`
 --
 ALTER TABLE `patients`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT COMMENT 'システムID', AUTO_INCREMENT=10;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT COMMENT 'システムID', AUTO_INCREMENT=11;
 
 --
 -- テーブルの AUTO_INCREMENT `personal_access_tokens`
@@ -347,7 +347,7 @@ ALTER TABLE `personal_access_tokens`
 -- テーブルの AUTO_INCREMENT `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
