@@ -19,6 +19,7 @@ use App\Http\Controllers\Auth\LoginController;
 
 Route::get('/', [HomeController::class, 'top'])->name('top');
 
+
 //一般ユーザログイン画面
 
 
@@ -89,8 +90,8 @@ Route::post('/remove_patient/{id}', [HomeController::class, 'removePatient'])->n
 
 //管理ユーザ用のユーザ削除処理
 
-Route::get('/deleteUser', [HomeController::class, 'deleteUserGET'])->name('deleteUserGET');
-Route::post('/deleteUser', [HomeController::class, 'deleteUser'])->name('deleteUser');
+Route::get('/deleteUser/{id}', [HomeController::class, 'deleteUserGET'])->name('deleteUserGET');
+Route::post('/deleteUser/{id}', [HomeController::class, 'deleteUser'])->name('deleteUser');
 
 //プロフィール画像のアップロード
 

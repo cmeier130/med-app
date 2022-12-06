@@ -66,10 +66,10 @@
                 </td>
                 <td class="py-4 px-6">{{ $user->created_at }}</td>
                 <td class="py-4 pr-3">
-                  <form action="{{ route ('deleteUser',['id' => $user->id]) }}" method="post" onsubmit="return confirm('削除しますか？')">
+                  <form action="{{ route ('deleteUser',['id' => $user->id]) }}" method="POST" onsubmit="return confirm('削除しますか？')">
                     @csrf
-                    <button type="hidden" type="submit" id="delete"><ion-icon name="close-circle"></ion-icon></button>
                     <input type="hidden" name='id' value="{{ $user->id }}">
+                    <button type="submit" id="delete"><ion-icon name="close-circle"></ion-icon></button>
                   </form>
                 </td>
               @endforeach   

@@ -254,8 +254,7 @@ class HomeController extends Controller
     public function deleteUser($id)
     {
         $users = DB::table('users');
-        $users->find($id);
-        $users->delete($id);
+        $users->where('id',$id)->delete();
         return redirect()->route('top');
     }
 
@@ -294,8 +293,8 @@ class HomeController extends Controller
     public function removePatient($id)
     {
         $patients = DB::table('patients');
-        $patients->find($id);
-        $patients->delete($id);
+        $patients->where('patientid',$id)->delete();
+      
         return redirect()->route('top');
     }
 

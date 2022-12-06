@@ -34,10 +34,10 @@
                       <input type="hidden" name="patientemail" value="{{ $val->email }}">
                       <input type="hidden" name="patientcreated_at" value="{{ $val->created_at }}">
                   </form>
-                  <form action="{{ route ('removePatient',['id' => $val->id ]) }}" method="post" onsubmit="return confirm('削除しますか？')" class='h-[42px]'>
+                  <form action="{{ route ('removePatient',['id' => $val->id ]) }}" method="post"  class='h-[42px]'>
                     @csrf
-                    <button class="mt-3" type="hidden" type="submit" id="delete"><ion-icon name="close-circle"></ion-icon></button>
                     <input type="hidden" name='id' value="{{ $val->id }}">
+                    <input class="mt-3" type="submit" id="delete"><ion-icon name="close-circle"></ion-icon></input>
                   </form>
               </div>
             </div>
@@ -62,7 +62,7 @@
                 <td class="py-4 px-6">{{ $info->email }}</td>
                 <td class="py-4 px-6">{{ $info->created_at }}</td>
                 <td class="py-4 px-6">
-                  <form action="{{ route ('show',['id' => $info->id ]) }}" method="post" class="mb-0 p-0">
+                  <form action="{{ route ('show',['id' => $info->id ]) }}" method="POST" class="mb-0 p-0">
                     @csrf
                         <input type="submit" name="sub_show" value="詳細" class="hover:cursor-pointer text-gray-900 bg-white border border-gray-300 focus:outline-none hover:bg-gray-100 focus:ring-4 focus:ring-gray-200 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-gray-800 dark:text-white dark:border-gray-600 dark:hover:bg-gray-700 dark:hover:border-gray-600 dark:focus:ring-gray-700">
                         <input type="hidden" name="patientid" value="{{ $info->id }}">
@@ -72,10 +72,10 @@
                     </form>
                 </td>
                 <td class="py-4 pr-3">
-                  <form action="{{ route ('removePatient',['id' => $info->id ]) }}" method="post" onsubmit="return confirm('削除しますか？')">
+                  <form action="{{ route ('removePatient',['id' => $info->id ]) }}" method="POST" onsubmit="return confirm('削除しますか？')">
                     @csrf
-                    <button type="hidden" type="submit" id="delete"><ion-icon name="close-circle"></ion-icon></button>
-                    <input type="hidden" name='id' value="{{ $info->id }}">
+                      <input type="hidden" name='patient_id' value="{{ $info->id }}">
+                      <button type="submit" id="delete"><ion-icon name="close-circle"></ion-icon></button>
                   </form>
                 </td>
               </tr>
