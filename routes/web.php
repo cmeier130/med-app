@@ -15,6 +15,11 @@ use App\Http\Controllers\Auth\LoginController;
 |
 */
 
+
+Route::get('/linkstorage', function () {
+    Artisan::call('storage:link');
+});
+
 //トップ
 
 Route::get('/', [HomeController::class, 'top'])->name('top');
