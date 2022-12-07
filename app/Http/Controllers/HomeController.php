@@ -413,5 +413,30 @@ class HomeController extends Controller
         
         return response()->json($events);
     }
-    
+
+    public function addeventGET()
+    {
+        return redirect()->route('calendar');
+    }
+
+    public function addEvent(Request $request)
+    {
+        $uid = Auth::User()->id;
+        $input = $request->all();
+
+        if(!$input){
+            $errors[] = "エラーが発生しました。";
+            return view('medapp.calendar');
+        } else {
+            DB::table('calendar')->insert([
+                'user_id' => $uid,
+                'event_name' => $input['title'],
+                'start_date' => $input['start_date'],
+                'end_date' => $input['end_date'],
+                'created_at' => Carbon::now()
+            ]);
+        }
+        return redirect()->route('calendar');
+    }
+
 }

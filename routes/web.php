@@ -105,8 +105,11 @@ Route::get('/calendar', function(){
 })->name('calendar');
 Route::get('/get_events', [HomeController::class, 'getEvents']);
 
-Route::get('/schedule-addGET', [HomeController::class, 'scheduleAddGET'])->name('scheduleAddGET');
-Route::post('/schedule-add', [HomeController::class, 'scheduleAdd'])->name('schedule-add');
+
+
+
+Route::get('/addevent', [HomeController::class, 'addeventGET'])->name('addeventGET');
+Route::post('/addevent', [HomeController::class, 'addEvent'])->name('addEvent');
 
 
 Route::get('/forgot-password', function(){
