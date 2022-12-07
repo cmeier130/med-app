@@ -46,13 +46,41 @@ class HomeController extends Controller
             return view('medapp.patienttop',['mymeds' => $mymeds]);
         }elseif($role === 1){
             $uid = Auth::User()->id;
-            $mypatients = DB::table('patients')
+            $keyword = $request->input('keyword');
+            
+            if(!empty($keyword)){
+
+                $mypatients = DB::table('patients')
+                        ->leftJoin('users','patients.patientid','=','users.id')
+                        ->select('users.name','users.id','users.email','users.created_at')
+                        ->where([
+                            ['doctorid','=',$uid],
+                            ['users.name','LIKE', "%{$keyword}%"]
+                            ])
+                        ->orWhere([
+                            ['doctorid','=',$uid],
+                            ['users.email','LIKE', "%{$keyword}%"]
+                            ])
+                        ->orWhere([
+                            ['doctorid','=',$uid],
+                            ['users.id','LIKE', "%{$keyword}%"]
+                            ])
+                        ->get();
+                $session = $request->session()->all();
+                return view('medapp.doctop',['mypatients' => $mypatients, 'keyword' => $keyword ]);
+
+                
+            } else {
+                $keyword = "";
+                $mypatients = DB::table('patients')
                         ->leftJoin('users','patients.patientid','=','users.id')
                         ->select('users.name', 'users.id', 'users.email', 'users.created_at')
                         ->where('doctorid','=',$uid)
                         ->get();
-            $session = $request->session()->all();
-            return view('medapp.doctop',['mypatients' => $mypatients]);
+                $session = $request->session()->all();
+                return view('medapp.doctop',['mypatients' => $mypatients, 'keyword' => $keyword]);
+            }
+
         }elseif($role === 2){
             $users = DB::table('users')
                     ->select('id','email','role', 'created_at')

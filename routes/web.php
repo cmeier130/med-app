@@ -15,11 +15,6 @@ use App\Http\Controllers\Auth\LoginController;
 |
 */
 
-
-Route::get('/linkstorage', function () {
-    Artisan::call('storage:link');
-});
-
 //トップ
 
 Route::get('/', [HomeController::class, 'top'])->name('top');
@@ -64,6 +59,7 @@ Route::post('/med-confirm', [HomeController::class, 'addconfirm'])->name('addcon
 //データ送信
 
 Route::post('/complete', [HomeController::class, 'send'])->name('send');
+
 
 //編集画面
 
