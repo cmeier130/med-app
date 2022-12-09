@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\ApiTestController;
 use App\Http\Controllers\Auth\LoginController;
 
 /*
@@ -19,6 +20,9 @@ use App\Http\Controllers\Auth\LoginController;
 
 Route::get('/', [HomeController::class, 'top'])->name('top');
 
+//API連携
+
+Route::get('/api',[ApiTestController::class, 'test']);
 
 //一般ユーザログイン画面
 
@@ -107,9 +111,14 @@ Route::get('/get_events', [HomeController::class, 'getEvents']);
 
 
 
-
 Route::get('/addevent', [HomeController::class, 'addeventGET'])->name('addeventGET');
 Route::post('/addevent', [HomeController::class, 'addEvent'])->name('addEvent');
+
+
+//退会する
+
+Route::get('/deleteaccount', [HomeController::class, 'deleteaccountGET'])->name('deleteaccountGET');
+Route::post('/deleteaccount', [HomeController::class, 'taikai'])->name('taikai');
 
 
 Route::get('/forgot-password', function(){

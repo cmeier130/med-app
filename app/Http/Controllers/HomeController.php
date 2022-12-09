@@ -439,4 +439,17 @@ class HomeController extends Controller
         return redirect()->route('calendar');
     }
 
+    public function deleteaccountGET()
+    {
+        return redirect()->route('dashboard');
+    }
+
+    public function taikai(Request $request)
+    {
+        $uid = Auth::User()->id;
+        $users = DB::table('users');
+        $users->where('id',$uid)->delete();
+        return redirect()->route('top');
+
+    }
 }
