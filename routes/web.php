@@ -120,6 +120,19 @@ Route::post('/addevent', [HomeController::class, 'addEvent'])->name('addEvent');
 Route::get('/deleteaccount', [HomeController::class, 'deleteaccountGET'])->name('deleteaccountGET');
 Route::post('/deleteaccount', [HomeController::class, 'taikai'])->name('taikai');
 
+//医療関係者が薬を患者の薬袋に追加する
+
+Route::get('/padd', [HomeController::class, 'padd'])->name('padd');
+
+Route::get('/pconfirm', [HomeController::class, 'pconfirmGET'])->name('pconfirmGET');
+Route::post('/pconfirm', [HomeController::class, 'pconfirm'])->name('pconfirm');
+
+
+Route::get('/p-med-confirm', [HomeController::class, 'confirm'])->name('confirm');
+Route::post('/p-med-confirm', [HomeController::class, 'paddconfirm'])->name('paddconfirm');
+
+Route::get('/p-med-send', [HomeController::class, 'psendGET'])->name('psendGET');
+Route::post('/p-med-send', [HomeController::class, 'psend'])->name('psend');
 
 Route::get('/forgot-password', function(){
     return view('auth.forgot-password');

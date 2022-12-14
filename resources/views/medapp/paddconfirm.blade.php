@@ -3,7 +3,7 @@
 @include("medapp.head")
 <body class="min-h-screen bg-gray-100 dark:bg-gray-800">
     @include("medapp.header")
-    <form class="container mx-auto px-5" action="{{ route('send') }}" method="POST">
+    <form class="container mx-auto px-5" action="{{ route('psend') }}" method="POST">
         @csrf
         <h2 class="font-bold text-3xl my-5 dark:text-white">内容確認</h2>
         <div class="grid gap-6 mb-6 md:grid-cols-2">

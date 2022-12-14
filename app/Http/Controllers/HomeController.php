@@ -96,6 +96,7 @@ class HomeController extends Controller
     public function show(Request $request, $id)
     {
         $name = $request->get("patientname");
+        $patient_id = $request->get("patientid");
         $mymeds = DB::table('meds')
                     ->leftJoin('users','meds.user_id','=','users.id')
                     ->select('meds.id','users.name AS uname','meds.user_id','meds.name','meds.days','meds.amount','meds.type','meds.comments','meds.time','meds.date_of_creation','meds.date_of_update','meds.del_flag')
@@ -103,8 +104,9 @@ class HomeController extends Controller
                     ->where('del_flag','=',0)
                     ->get();
         $session = $request->session()->all();
+        session(['patient_id' => $patient_id]);
         // var_dump($mymeds);
-        return view('medapp.viewpatient',['mymeds' => $mymeds, 'patientname' => $name]);
+        return view('medapp.viewpatient',['mymeds' => $mymeds, 'patientname' => $name, 'patient_id' => $patient_id]);
     }
 
     //プロフィール
@@ -160,7 +162,6 @@ class HomeController extends Controller
     
     public function send(Request $request)
     {
-   
         $uid = Auth::User()->id;
         $input = $request->session()->get('input');
         $days = implode('、', $input['days']);
@@ -451,5 +452,64 @@ class HomeController extends Controller
         $users->where('id',$uid)->delete();
         return redirect()->route('top');
 
+    }
+
+    public function padd(Request $request)
+    {
+        return view('medapp.patientmedadd');
+    }
+
+
+    public function pconfirmGET(){
+        return redirect()->route('top');
+    }
+
+    public function pconfirm(Request $request){
+        $input = $request->all($this->keys);
+        $request->session()->put("input", $input);
+        return view('medapp.paddconfirm', ["input" => $input]);
+    }
+
+    public function psendGET()
+    {
+        return redirect()->route('top');
+    }
+    public function psend(Request $request)
+    {
+        $uid = session('patient_id');
+        $input = $request->session()->get('input');
+        if(isset($input['days']))
+        {
+            $days = implode('、', $input['days']);
+        }
+       if(isset($input['time']))
+       {
+            $time = implode('、', $input['time']);
+       }
+       
+        if($request->has("con_cancel"))
+        {
+            return redirect('padd')->withInput($input);
+        }elseif($request->has('finalize')){
+
+            if(!$input)
+            {
+                return redirect('padd');
+            }else{
+                DB::table('meds')->insert([
+                    'user_id' => $uid,
+                    'name' => $input['name'],
+                    'days' => $days,
+                    'amount' => $input['amount'],
+                    'type' => $input['type'],
+                    'time' => $time,
+                    'comments' => $input['comments'],
+                    'date_of_creation' => Carbon::now()
+                ]);
+            }
+            $request->session()->forget('input');
+            $request->session()->forget('patient_id');
+        }
+        return redirect()->route("top");
     }
 }
